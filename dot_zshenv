@@ -1,0 +1,10 @@
+# Dotnet 
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+# Rust
+. "$HOME/.cargo/env"
+
+# Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
