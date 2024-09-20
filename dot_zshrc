@@ -1,5 +1,11 @@
 EDITOR='nvim'
 
+HISTFILE=~/.histfile
+HISTSIZE=999999
+SAVEHIST=999999
+
+bindkey -e
+
 alias cat='bat'
 alias ls='ls -lahG'
 alias l='ls -CF'
