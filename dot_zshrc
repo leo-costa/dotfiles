@@ -7,8 +7,9 @@ SAVEHIST=999999
 bindkey -e
 
 alias cat='bat'
-alias ls='ls -lahG'
 alias l='ls -CF'
+alias ls='ls -lhG'
+alias la='ls -lahG'
 alias vim='nvim'
 alias v='nvim'
 
