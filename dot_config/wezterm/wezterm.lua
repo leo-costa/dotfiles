@@ -3,7 +3,9 @@ local config = wezterm.config_builder()
 
 config.color_scheme = 'Tokyo Night (Gogh)'
 config.font = wezterm.font('JetBrainsMono Nerd Font')
-config.font_size = 16
+config.font_size = 14
+config.use_fancy_tab_bar = true
+config.window_decorations = 'RESIZE|INTEGRATED_BUTTONS'
 config.window_frame = { font_size = 14 }
 
 local function move_or_resize(resize_or_move, key)
@@ -29,7 +31,7 @@ end
 
 local function rename_tab()
     return wezterm.action.PromptInputLine {
-        description = 'Enter new name for tab',
+        description = 'Enter new tab name',
         action = wezterm.action_callback(function(window, _, line)
             if line then
                 window:active_tab():set_title(line)
