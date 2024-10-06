@@ -13,6 +13,31 @@ alias la='ls -lahG'
 alias vim='nvim'
 alias v='nvim'
 
+# FZF Settings
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_DEFAULT_OPTS='-i --height=60% --border=rounded --layout=reverse'
+#export FZF_CTRL_T_OPTS='--bind "ctrl-/:change-preview-window(down|hidden|)"'
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always --line-range :500 {}' "$@" ;;
+  esac
+}
+
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

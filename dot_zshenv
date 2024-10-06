@@ -1,10 +1,15 @@
 # Dotnet 
-export PATH="$PATH:$HOME/.dotnet/tools"
+if [[ ":$PATH:" != *":$HOME/.dotnet/tools:"* ]]; then
+    export PATH="$PATH:$HOME/.dotnet/tools"
+fi
 
 # Rust
-. "$HOME/.cargo/env"
+if [[ ":$PATH:" != *":$HOME/.cargo/bin:"* ]]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
 
 # Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+if [[ ":$PATH:" != *":$HOME/go/bin:"* ]]; then
+    export PATH="$PATH:$HOME/go/bin:"
+fi
 
