@@ -16,7 +16,6 @@ alias v='nvim'
 # FZF Settings
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_DEFAULT_OPTS='-i --height=60% --border=rounded --layout=reverse'
-#export FZF_CTRL_T_OPTS='--bind "ctrl-/:change-preview-window(down|hidden|)"'
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"

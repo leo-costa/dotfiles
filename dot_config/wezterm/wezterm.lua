@@ -1,7 +1,7 @@
 local wezterm = require('wezterm')
 local config = wezterm.config_builder()
 
-config.color_scheme = 'Tokyo Night (Gogh)'
+config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font('JetBrainsMono Nerd Font')
 config.font_size = 14
 config.use_fancy_tab_bar = true
