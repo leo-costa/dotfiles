@@ -5,8 +5,9 @@ config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font('JetBrainsMono Nerd Font')
 config.font_size = 14
 config.use_fancy_tab_bar = true
+config.window_background_opacity = 1
 config.window_decorations = 'RESIZE|INTEGRATED_BUTTONS'
-config.window_frame = { font_size = 14 }
+config.window_frame = { font_size = 13 }
 
 local function move_or_resize(resize_or_move, key)
     local direction = { h = 'Left', j = 'Down', k = 'Up', l = 'Right' }
@@ -40,30 +41,18 @@ local function rename_tab()
     }
 end
 
-config.leader = { key = 's', mods = 'CTRL' }
+config.leader = { mods = 'CTRL', key = 's' }
 config.keys = {
-    -- Tabs (Window)
-    { key = 'c', mods = 'LEADER',       action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
-    { key = 'n', mods = 'LEADER',       action = wezterm.action.ActivateTabRelative(1) },
-    { key = 'p', mods = 'LEADER',       action = wezterm.action.ActivateTabRelative(-1) },
-    { key = '1', mods = 'LEADER',       action = wezterm.action.ActivateTab(0) },
-    { key = '2', mods = 'LEADER',       action = wezterm.action.ActivateTab(1) },
-    { key = '3', mods = 'LEADER',       action = wezterm.action.ActivateTab(2) },
-    { key = '4', mods = 'LEADER',       action = wezterm.action.ActivateTab(3) },
-    { key = '5', mods = 'LEADER',       action = wezterm.action.ActivateTab(4) },
-    { key = '6', mods = 'LEADER',       action = wezterm.action.ActivateTab(5) },
-    { key = '7', mods = 'LEADER',       action = wezterm.action.ActivateTab(6) },
-    { key = '8', mods = 'LEADER',       action = wezterm.action.ActivateTab(7) },
-
-    -- Pane
-    { key = 'x', mods = 'LEADER',       action = wezterm.action.CloseCurrentPane { confirm = true } },
-    { key = ',', mods = 'LEADER',       action = rename_tab() },
-    { key = 'z', mods = 'LEADER',       action = wezterm.action.TogglePaneZoomState },
-    { key = '%', mods = 'LEADER|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-    { key = '"', mods = 'LEADER|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
+    -- Panes
+    { mods = 'LEADER', key = ',',     action = rename_tab() },
+    { mods = 'LEADER', key = 'm',     action = wezterm.action.TogglePaneZoomState },
+    { mods = "LEADER", key = "Space", action = wezterm.action.RotatePanes "Clockwise" },
+    { mods = 'LEADER', key = '0',     action = wezterm.action.PaneSelect { mode = 'SwapWithActive' } },
+    { mods = 'LEADER', key = 'v',     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { mods = 'LEADER', key = 's',     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' } },
 
     -- Reload config
-    { key = 'r', mods = 'LEADER',       action = wezterm.action.ReloadConfiguration },
+    { mods = 'LEADER', key = 'r',     action = wezterm.action.ReloadConfiguration },
 
     -- Move between split panes
     move_or_resize('move', 'h'),
