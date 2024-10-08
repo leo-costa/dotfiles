@@ -3,6 +3,9 @@ $os \
 $username\
 $hostname\
 $directory\
+$git_status\
+$git_state\
+$git_branch\
 $c\
 $dotnet\
 $golang\
