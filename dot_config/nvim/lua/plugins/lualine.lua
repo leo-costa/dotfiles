@@ -3,7 +3,12 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         require('lualine').setup({
-            options = { theme = 'catppuccin' }
+            options = {
+                theme = 'catppuccin',
+                component_separators = { left = '|', right = '|' },
+                section_separators = { left = '', right = '' },
+            },
+            extensions = { 'lazy', 'mason', 'oil' },
         })
     end
 }

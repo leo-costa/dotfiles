@@ -6,6 +6,7 @@ return {
         { 'neovim/nvim-lspconfig' },             -- Required
         { 'williamboman/mason.nvim' },           -- Optional
         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+        { 'onsails/lspkind.nvim' },              -- Optional
 
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },     -- Required
@@ -34,7 +35,8 @@ return {
                 'gopls',
                 'lua_ls',
                 'omnisharp',
-                'rust_analyzer'
+                'rust_analyzer',
+                'zls'
             },
             handlers = {
                 function(server_name)
@@ -59,7 +61,15 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end,
             },
-            formatting = lsp_zero.cmp_format({ details = true }),
+            formatting = {
+                fields = {'abbr', 'kind', 'menu'},
+                format = require('lspkind').cmp_format({
+                    mode = 'symbol_text',
+                    maxwidth = 50,
+                    ellipsis_char = '...',
+                }),
+                expandable_indicator = true,
+            },
             mapping = cmp.mapping.preset.insert({
                 ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
