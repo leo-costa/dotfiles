@@ -4,6 +4,7 @@ return {
     priority = 1000,
     config = function()
         require('catppuccin').setup({
+            transparent_background = true,
             styles = {
                 conditionals = {},
             },
