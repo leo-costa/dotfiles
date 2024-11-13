@@ -35,7 +35,13 @@ truncation_symbol = "…/"
 
 [os]
 disabled = false
-symbols = { Macos = " ", Pop = " ", Ubuntu = " ", Windows = "󰍲 " }
+
+[os.symbols]
+Arch = " "
+Macos = " "
+Pop = " "
+Ubuntu = " "
+Windows = "󰍲 "
 
 [c]
 symbol = " "
