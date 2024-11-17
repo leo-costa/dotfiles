@@ -43,9 +43,18 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Toggle inlay hints
-vim.keymap.set('n', '<leader>h', function ()
+vim.keymap.set('n', '<leader>h', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
+
+-- Add borders to both diagnostic and lsp hover
+vim.diagnostic.config({
+    float = { border = "single" }
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, { border = "single" }
+)
 
 -- Show highlight when yanking
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -74,4 +83,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-require('lazy').setup('plugins')
+require('lazy').setup('plugins', {
+    ui = { border = "single" }
+})

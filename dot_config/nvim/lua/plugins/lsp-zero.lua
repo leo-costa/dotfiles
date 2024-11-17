@@ -28,7 +28,10 @@ return {
             sign_text = true,
         })
 
-        require('mason').setup({})
+        require('mason').setup({
+             ui = { border = "single" }
+        })
+
         require('mason-lspconfig').setup({
             ensure_installed = {
                 'clangd',
