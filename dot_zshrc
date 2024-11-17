@@ -1,21 +1,32 @@
 EDITOR='nvim'
-
-HISTFILE=~/.histfile
-HISTSIZE=999999
-SAVEHIST=999999
-
 bindkey -e
 
+# History
+HISTSIZE=999999
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HITDUP=erase
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# Aliases
 alias cat='bat'
 alias l='ls -CF'
 alias ls='ls -lhG'
 alias la='ls -lahG'
-alias vim='nvim'
 alias v='nvim'
+alias vim='nvim'
+
+# Styles
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # FZF Settings
 export FZF_COMPLETION_TRIGGER='~~'
-export FZF_DEFAULT_OPTS='-i --height=60% --border=rounded --layout=reverse'
+export FZF_DEFAULT_OPTS='-i --height=60% --layout=reverse'
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -43,3 +54,6 @@ eval "$(starship init zsh)"
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+FPATH=/opt/homebrew/share/zsh-completions:$FPATH
+autoload -Uz compinit && compinit
