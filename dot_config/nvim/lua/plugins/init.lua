@@ -2,7 +2,14 @@ return {
     { 'tpope/vim-fugitive' },
     {
         'j-hui/fidget.nvim',
-        opts = {}
+        opts = {},
+        config = function()
+            require('fidget').setup({
+                notification = {
+                    window = { winblend = 0 }
+                }
+            })
+        end
     },
     {
         "kdheepak/lazygit.nvim",
