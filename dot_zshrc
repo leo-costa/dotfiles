@@ -18,6 +18,8 @@ alias cat='bat'
 alias l='ls -CF'
 alias ls='ls -lhG'
 alias la='ls -lahG'
+alias lg='lazygit'
+alias ld='lazydocker'
 alias v='nvim'
 alias vim='nvim'
 
