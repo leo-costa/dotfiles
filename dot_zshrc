@@ -20,8 +20,10 @@ alias ls='ls -lhG'
 alias la='ls -lahG'
 alias lg='lazygit'
 alias ld='lazydocker'
+alias n='nvim'
 alias v='nvim'
 alias vim='nvim'
+alias y='yazi'
 
 # Styles
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
