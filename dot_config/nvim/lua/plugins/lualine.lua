@@ -4,7 +4,7 @@ return {
     config = function()
         require('lualine').setup({
             options = { theme = 'catppuccin' },
-            extensions = { 'lazy', 'mason', 'oil' },
+            extensions = { 'lazy', 'mason' },
         })
     end
 }

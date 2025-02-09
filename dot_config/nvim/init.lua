@@ -31,12 +31,7 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 400
 
 -- Basic remapping
-vim.keymap.set('n', '-', '<Cmd>:Oil<CR>')
 vim.keymap.set('n', '<leader>w', '<Esc>:w<CR>')
-
--- Keep cursor in the middle of the screen
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
 -- Move selection while on visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
