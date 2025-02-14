@@ -53,8 +53,6 @@ return {
             { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
             { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
             { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-            { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-            { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
             -- Find
             { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
             { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -79,7 +77,6 @@ return {
             -- Grep
             { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
             { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
-            { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
             { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
             -- LSP
             { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
@@ -100,7 +97,6 @@ return {
             vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
             vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
             vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
-            vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
             -- Resize
             vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
             vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)

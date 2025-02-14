@@ -1,0 +1,27 @@
+background-blur-radius = 10
+background-opacity = 0.9
+
+font-size = 16
+
+quick-terminal-animation-duration = 0.1
+quick-terminal-position = center
+
+window-padding-x = 10
+window-padding-y = 10
+
+keybind = unconsumed:ctrl+l=goto_split:right
+keybind = unconsumed:ctrl+j=goto_split:bottom
+keybind = unconsumed:ctrl+k=goto_split:top
+keybind = unconsumed:ctrl+h=goto_split:left
+keybind = global:ctrl+space=toggle_quick_terminal
+
+keybind = super+ctrl+l=resize_split:right,10
+keybind = super+ctrl+j=resize_split:down,10
+keybind = super+ctrl+k=resize_split:up,10
+keybind = super+ctrl+h=resize_split:left,10
+keybind = super+ctrl+=equalize_splits
+keybind = super+shift+enter=unbind
+keybind = super+ctrl+enter=toggle_split_zoom
+
+
+theme = "catppuccin-mocha"
