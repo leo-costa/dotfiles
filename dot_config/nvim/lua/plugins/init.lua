@@ -34,9 +34,13 @@ return {
             bigfile = { },
             explorer = { replace_netrw = true },
             input = { },
+            image = { },
             notifier = { },
             picker = {
                 sources = {
+                    command_history = {
+                        layout = { layout = { border = "rounded" } }
+                    },
                     explorer = {
                         layout = { layout = { position = "right" } }
                     }
@@ -51,8 +55,9 @@ return {
             -- Top Pickers & Explorer
             { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
             { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-            { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
             { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+            { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+            { "<leader>t", function() Snacks.terminal.open() end, desc = "Open Terminal" },
             -- Find
             { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
             { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -71,7 +76,9 @@ return {
             { "<leader>lg", function() Snacks.lazygit.open() end, desc = "Open LazyGit" },
             { "<leader>gbo", function() Snacks.gitbrowse.open() end, desc = "Git Browse Open" },
             -- Search
+            { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
             { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+            { "<leader>sn", function() Snacks.picker.notifications() end, desc = "Notification History" },
             { "<leader>sr", function() Snacks.picker.registers() end, desc = "Registers" },
             { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
             -- Grep
