@@ -1,5 +1,5 @@
-EDITOR='nvim'
 bindkey -e
+export EDITOR='nvim'
 
 # History
 HISTSIZE=999999
@@ -14,7 +14,9 @@ setopt hist_save_no_dups
 setopt hist_find_no_dups
 
 # Aliases
+alias bat='batcat'
 alias cat='bat'
+alias fd="fdfind"
 alias l='ls -CF'
 alias ls='ls -lhG'
 alias la='ls -lahG'
@@ -56,8 +58,13 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+PATH_PREFIX="/usr"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    PATH_PREFIX="/opt/homebrew"
+fi
 
-FPATH=/opt/homebrew/share/zsh-completions:$FPATH
+source $PATH_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $PATH_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+FPATH=$PATH_PREFIX/share/zsh-completions:$FPATH
 autoload -Uz compinit && compinit
