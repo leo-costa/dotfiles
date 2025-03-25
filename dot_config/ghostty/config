@@ -23,5 +23,4 @@ keybind = super+ctrl+=equalize_splits
 keybind = super+shift+enter=unbind
 keybind = super+ctrl+enter=toggle_split_zoom
 
-
 theme = "catppuccin-mocha"
