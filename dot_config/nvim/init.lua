@@ -1,5 +1,5 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 vim.opt.clipboard = 'unnamedplus'
@@ -12,7 +12,7 @@ vim.opt.wrap = false
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 vim.opt.scrolloff = 10
 
 vim.opt.list = true
@@ -29,7 +29,7 @@ vim.opt.undolevels = 100000
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 400
-vim.opt.winborder = "rounded"
+vim.opt.winborder = 'rounded'
 
 -- Basic remapping
 vim.keymap.set('n', '<leader>w', '<Esc>:w<CR>')
@@ -37,6 +37,9 @@ vim.keymap.set('n', '<leader>w', '<Esc>:w<CR>')
 -- Move selection while on visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- Go into normal mode when on the terminal
+vim.keymap.set('t', '<C-[><C-[>', '<C-\\><C-n>')
 
 -- Toggle inlay hints
 vim.keymap.set('n', '<leader>th', function()
@@ -69,19 +72,27 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Create LSP progress
-vim.api.nvim_create_autocmd("LspProgress", {
+vim.api.nvim_create_autocmd('LspProgress', {
     ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
     callback = function(ev)
-        local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-        vim.notify(vim.lsp.status(), "info", {
-            id = "lsp_progress",
-            title = "LSP Progress",
+        local spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
+        vim.notify(vim.lsp.status(), 'info', {
+            id = 'lsp_progress',
+            title = 'LSP Progress',
             opts = function(notif)
-                notif.icon = ev.data.params.value.kind == "end" and " "
-                    or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+                notif.icon = ev.data.params.value.kind == 'end' and ' '
+                or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
             end,
         })
     end,
+})
+
+vim.lsp.enable({
+    'clangd',
+    'lua-ls',
+    'gopls',
+    'rust-analyzer',
+    'zls'
 })
 
 -- Lazy.nvim
@@ -91,9 +102,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', lazyrepo, '--branch=stable', lazypath })
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
-            { "\nPress any key to exit..." },
+            { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+            { out,                            'WarningMsg' },
+            { '\nPress any key to exit...' },
         }, true, {})
         vim.fn.getchar()
         os.exit(1)
@@ -102,5 +113,5 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins', {
-    ui = { border = "rounded" }
+    ui = { border = 'rounded' }
 })

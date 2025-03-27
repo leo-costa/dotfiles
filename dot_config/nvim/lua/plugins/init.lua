@@ -30,7 +30,7 @@ return {
     },
     {
         'kylechui/nvim-surround',
-        version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        version = '*',
         event = 'VeryLazy',
         config = function()
             require('nvim-surround').setup({})
@@ -64,9 +64,9 @@ return {
         ft = 'lua',
         opts = {
             library = {
-                { path = "luvit-meta/library", words = { "vim%.uv" } },
-                { path = "LazyVim",            words = { "LazyVim" } },
-                { path = "lazy.nvim",          words = { "LazyVim" } },
+                { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+                { path = 'LazyVim',            words = { 'LazyVim' } },
+                { path = 'lazy.nvim',          words = { 'LazyVim' } },
             }
         }
     }
