@@ -13,7 +13,6 @@ keybind = unconsumed:ctrl+l=goto_split:right
 keybind = unconsumed:ctrl+j=goto_split:bottom
 keybind = unconsumed:ctrl+k=goto_split:top
 keybind = unconsumed:ctrl+h=goto_split:left
-keybind = global:ctrl+space=toggle_quick_terminal
 
 keybind = super+ctrl+l=resize_split:right,10
 keybind = super+ctrl+j=resize_split:down,10
