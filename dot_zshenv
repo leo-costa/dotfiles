@@ -1,4 +1,4 @@
-# Dotnet 
+# Dotnet
 if [[ ":$PATH:" != *":$HOME/.dotnet/tools:"* ]]; then
     export PATH="$PATH:$HOME/.dotnet/tools"
 fi
@@ -10,6 +10,5 @@ fi
 
 # Go
 if [[ ":$PATH:" != *":$HOME/go/bin:"* ]]; then
-    export PATH="$PATH:$HOME/go/bin:"
+    export PATH="$PATH:$HOME/go/bin"
 fi
-

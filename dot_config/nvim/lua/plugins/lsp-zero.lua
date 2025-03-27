@@ -25,12 +25,11 @@ return {
             lsp_zero.extend_lspconfig({
                 capabilities = require('cmp_nvim_lsp').default_capabilities(),
                 lsp_attach = lsp_attach,
-                float_boarder = 'rounded',
                 sign_text = true,
             })
 
             require('mason').setup({
-                ui = { border = "single" },
+                ui = { border = "rounded" },
                 registries = {
                     'github:mason-org/mason-registry',
                     'github:Crashdummyy/mason-registry'

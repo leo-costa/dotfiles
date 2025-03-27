@@ -29,6 +29,7 @@ vim.opt.undolevels = 100000
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 400
+vim.opt.winborder = "rounded"
 
 -- Basic remapping
 vim.keymap.set('n', '<leader>w', '<Esc>:w<CR>')
@@ -38,43 +39,49 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Toggle inlay hints
-vim.keymap.set('n', '<leader>h', function()
+vim.keymap.set('n', '<leader>th', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
 
--- Add borders to both diagnostic and lsp hover
-vim.diagnostic.config({
-    float = { border = "single" }
-})
+-- Toggle virtual text
+vim.keymap.set('n', '<leader>tt', function()
+    local config = vim.diagnostic.config()
+    if config ~= nil then
+        local enabled = not config.virtual_text
+        vim.diagnostic.config({ virtual_text = enabled })
+    end
+end)
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, { border = "single" }
-)
+-- Toggle virtual lines
+vim.keymap.set('n', '<leader>tl', function()
+    local config = vim.diagnostic.config()
+    if config ~= nil then
+        local enabled = not config.virtual_lines
+        vim.diagnostic.config({ virtual_lines = enabled })
+    end
+end)
 
 -- Show highlight when yanking
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    group = highlight_group,
+    callback = function() vim.highlight.on_yank() end,
+    group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
     pattern = '*',
 })
 
 -- Create LSP progress
 vim.api.nvim_create_autocmd("LspProgress", {
-  ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
-  callback = function(ev)
-    local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-    vim.notify(vim.lsp.status(), "info", {
-      id = "lsp_progress",
-      title = "LSP Progress",
-      opts = function(notif)
-        notif.icon = ev.data.params.value.kind == "end" and " "
-          or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
-      end,
-    })
-  end,
+    ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
+    callback = function(ev)
+        local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+        vim.notify(vim.lsp.status(), "info", {
+            id = "lsp_progress",
+            title = "LSP Progress",
+            opts = function(notif)
+                notif.icon = ev.data.params.value.kind == "end" and " "
+                    or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+            end,
+        })
+    end,
 })
 
 -- Lazy.nvim
@@ -95,5 +102,5 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins', {
-    ui = { border = "single" }
+    ui = { border = "rounded" }
 })

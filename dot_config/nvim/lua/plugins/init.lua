@@ -19,6 +19,16 @@ return {
         end
     },
     {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup({
+                options = { theme = 'catppuccin' },
+                extensions = { 'lazy', 'mason' },
+            })
+        end
+    },
+    {
         'kylechui/nvim-surround',
         version = '*', -- Use for stability; omit to use `main` branch for the latest features
         event = 'VeryLazy',
@@ -27,19 +37,26 @@ return {
         end
     },
     {
-        'mrjones2014/smart-splits.nvim',
-        lazy = false,
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate',
         config = function()
-            -- Move
-            vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
-            vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
-            vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
-            vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
-            -- Resize
-            vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
-            vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
-            vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
-            vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
+            require('nvim-treesitter.configs').setup({
+                auto_install = false,
+                ensure_installed = {
+                    'json',
+                    'html',
+                    'markdown',
+                    'markdown_inline',
+                    'toml',
+                    'vim',
+                    'vimdoc'
+                },
+                ignore_install = { 'all' },
+                sync_install = false,
+                highlight = { enable = true },
+                indent = { enable = true },
+                modules = {}
+            })
         end
     },
     {
