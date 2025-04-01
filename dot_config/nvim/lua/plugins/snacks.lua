@@ -82,8 +82,10 @@ return {
         { '<leader>ds', function() Snacks.picker.lsp_symbols() end,                  desc = 'LSP Documents Symbols' },
         { '<leader>ws', function() Snacks.picker.lsp_workspace_symbols() end,        desc = 'LSP Workspace Symbols' },
         -- Extras
-        { '<leader>z',  function() Snacks.zen.zoom() end,                            desc = 'Toogle Zoom' },
+        { '<leader>ba', function() Snacks.bufdelete.all() end,                       desc = 'Delete All Buffers' },
         { '<leader>bd', function() Snacks.bufdelete() end,                           desc = 'Delete Buffer' },
+        { '<leader>bo', function() Snacks.bufdelete.other() end,                     desc = 'Delete Other Buffers' },
         { '<leader>un', function() Snacks.notifier.hide() end,                       desc = 'Dismiss All Notifications' },
+        { '<leader>z',  function() Snacks.zen.zoom() end,                            desc = 'Toogle Zoom' },
     }
 }

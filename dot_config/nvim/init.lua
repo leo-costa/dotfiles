@@ -47,11 +47,15 @@ vim.keymap.set('n', '<leader>th', function()
 end)
 
 -- Toggle virtual text
+vim.diagnostic.config({ virtual_text = { current_line = true } })
 vim.keymap.set('n', '<leader>tt', function()
     local config = vim.diagnostic.config()
     if config ~= nil then
-        local enabled = not config.virtual_text
-        vim.diagnostic.config({ virtual_text = enabled })
+        if config.virtual_text == false then
+            vim.diagnostic.config({ virtual_text = { current_line = true } })
+        else
+            vim.diagnostic.config({ virtual_text = false })
+        end
     end
 end)
 
@@ -59,8 +63,11 @@ end)
 vim.keymap.set('n', '<leader>tl', function()
     local config = vim.diagnostic.config()
     if config ~= nil then
-        local enabled = not config.virtual_lines
-        vim.diagnostic.config({ virtual_lines = enabled })
+        if config.virtual_lines == false then
+            vim.diagnostic.config({ virtual_lines = { current_line = true } })
+        else
+            vim.diagnostic.config({ virtual_lines = false })
+        end
     end
 end)
 
@@ -81,7 +88,7 @@ vim.api.nvim_create_autocmd('LspProgress', {
             title = 'LSP Progress',
             opts = function(notif)
                 notif.icon = ev.data.params.value.kind == 'end' and ' '
-                or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+                    or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
             end,
         })
     end,
