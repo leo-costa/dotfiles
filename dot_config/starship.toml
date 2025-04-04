@@ -1,5 +1,7 @@
 format = """
 $os \
+$shell\
+$shlvl\
 $username\
 $hostname\
 $directory\
@@ -15,23 +17,12 @@ $nodejs\
 $python\
 $rust\
 $zig\
+$fill\
 $cmd_duration\
 \n$character"""
 
 add_newline = false
 palette = "catppuccin_mocha"
-
-[character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
-
-[git_branch]
-style = "bold mauve"
-
-[directory]
-style = "bold lavender"
-truncation_length = 4
-truncation_symbol = "…/"
 
 [os]
 disabled = false
@@ -43,11 +34,40 @@ Pop = " "
 Ubuntu = " "
 Windows = "󰍲 "
 
+[shell]
+disabled = false
+pwsh_indicator = '_'
+style = 'cyan bold'
+
+[shlvl]
+disabled = false
+format = '[$symbol$shlvl ]($style)'
+repeat = true
+symbol = '❯'
+repeat_offset = 1
+threshold = 0
+
+[directory]
+style = "bold lavender"
+truncation_length = 5
+truncation_symbol = "…/"
+
+[git_branch]
+style = "bold mauve"
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
 [c]
 symbol = " "
 
 [dotnet]
 symbol = "󰌛 "
+format = "via [$symbol($version )]($style)"
 
 [golang]
 symbol = " "
@@ -69,9 +89,6 @@ symbol = "󱘗 "
 
 [zig]
 symbol = " "
-
-[package]
-disable = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
