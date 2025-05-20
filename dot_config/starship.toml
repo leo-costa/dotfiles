@@ -5,9 +5,9 @@ $shlvl\
 $username\
 $hostname\
 $directory\
-$git_status\
-$git_state\
 $git_branch\
+$git_state\
+$git_status\
 $c\
 $dotnet\
 $golang\
@@ -17,9 +17,11 @@ $nodejs\
 $python\
 $rust\
 $zig\
+$jobs\
 $fill\
-$cmd_duration\
-\n$character"""
+$cmd_duration\n\
+$character\
+"""
 
 add_newline = false
 palette = "catppuccin_mocha"
@@ -36,14 +38,14 @@ Windows = "󰍲 "
 
 [shell]
 disabled = false
-pwsh_indicator = '_'
-style = 'cyan bold'
+pwsh_indicator = "_"
+style = "bold cyan"
 
 [shlvl]
 disabled = false
-format = '[$symbol$shlvl ]($style)'
+format = "[$symbol$shlvl ]($style)"
 repeat = true
-symbol = '❯'
+symbol = "❯"
 repeat_offset = 1
 threshold = 0
 
@@ -59,15 +61,18 @@ style = "bold mauve"
 symbol = " "
 
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
+success_symbol = "[[➜](green) ](peach)"
+error_symbol = "[[➜](red) ](peach)"
+vimcmd_symbol = "[➜ ❮](subtext1)"
+
+# Languages 
 
 [c]
 symbol = " "
 
 [dotnet]
 symbol = "󰌛 "
-format = "via [$symbol($version )]($style)"
+format = "via [$symbol($version)]($style)"
 
 [golang]
 symbol = " "
@@ -89,6 +94,8 @@ symbol = "󱘗 "
 
 [zig]
 symbol = " "
+
+# Palette definitions
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
