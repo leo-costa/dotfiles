@@ -6,6 +6,7 @@ font-size = 16
 quick-terminal-animation-duration = 0.1
 quick-terminal-position = center
 
+gtk-titlebar = false
 window-padding-x = 10
 window-padding-y = 10
 
